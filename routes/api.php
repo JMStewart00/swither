@@ -18,3 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('/index', 'YelpController');
+
+Route::get('/user/{user}', function (App\user $user) {
+    return $user->email;
+});
