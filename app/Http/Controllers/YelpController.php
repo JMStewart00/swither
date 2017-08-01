@@ -12,8 +12,24 @@ class YelpController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function searchParams(Request $request)
     {
+        return $paramaters;
+    }
+
+
+    public function index(Request $request)
+    {
+        // dd($request);
+        $parameters = $request->all();
+
+        // $parameters = [
+        // 'term' => $request->place,
+        // 'location' => $request->location,
+        // ];
+
+
         $provider = new \Stevenmaguire\OAuth2\Client\Provider\Yelp([
             'clientId'          => '_D0fpoWGQt3_-FGYLWuntg',
             'clientSecret'      => 'ncas4YPJ5zWCEv9PosBkHPRn5X66qfA45dYbKYF2gpqaO3X3gCKTOd3RIViqvXQq'
@@ -27,16 +43,10 @@ class YelpController extends Controller
             'apiHost' => 'api.yelp.com' // Optional, default 'api.yelp.com'
         ));
 
-        $parameters = [
-        'term' => 'restaurants',
-        'location' => 'Lexington, KY',
-        ];
 
         $results = $client->getBusinessesSearchResults($parameters);
         $data = $results->businesses;
-        // dd($data);
         return $data;
-        // return view('index', compact('data'));
 
     }
 
@@ -58,7 +68,29 @@ class YelpController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $parameters = $request->all();
+        // return $parameters;
+
+
+        $provider = new \Stevenmaguire\OAuth2\Client\Provider\Yelp([
+            'clientId'          => '_D0fpoWGQt3_-FGYLWuntg',
+            'clientSecret'      => 'ncas4YPJ5zWCEv9PosBkHPRn5X66qfA45dYbKYF2gpqaO3X3gCKTOd3RIViqvXQq'
+        ]);
+
+        $accessToken = (string) $provider->getAccessToken('client_credentials');
+
+        // Provide the access token to the yelp-php client
+        $client = new \Stevenmaguire\Yelp\v3\Client(array(
+            'accessToken' => $accessToken,
+            'apiHost' => 'api.yelp.com' // Optional, default 'api.yelp.com'
+        ));
+
+
+        $results = $client->getBusinessesSearchResults($parameters);
+        $data = $results->businesses;
+        return $data;
+
     }
 
     /**
