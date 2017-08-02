@@ -12,6 +12,11 @@ class User extends Authenticatable
 {
     use HasApiTokens, Notifiable, SoftDeletes;
 
+    public function groups()
+    {
+        return $this->hasMany('App\Group');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

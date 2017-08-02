@@ -35,7 +35,10 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $group = new Likes;
+        $group->group_name = $request->input('group_name');
+        $group->pin = $request->input('pin');
+        $group->save();
     }
 
     /**

@@ -40,6 +40,7 @@ class LikesController extends Controller
         $like->user_id = $request->input('user_id');
         $like->group_id = $request->input('group_id');
         $like->business_info = $request->input('business_info');
+        $like->business_id = $request->input('business_id');
         $like->save();
     }
 
