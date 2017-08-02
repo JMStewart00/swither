@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Group;
+use App\UsersGroups;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
@@ -14,7 +15,7 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -35,7 +36,7 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        $group = new Likes;
+        $group = new Group;
         $group->group_name = $request->input('group_name');
         $group->pin = $request->input('pin');
         $group->save();
@@ -47,42 +48,11 @@ class GroupController extends Controller
      * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function show(Group $group)
+    public function showGroups($id)
     {
-        //
+        $groups = UsersGroups::where('user_id', '=', $id)->get();
+        $group_names = Group::where('id', '=', $groups[0]->group_id)->get();
+        return $group_names;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Group  $group
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Group $group)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Group  $group
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Group $group)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Group  $group
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Group $group)
-    {
-        //
-    }
 }

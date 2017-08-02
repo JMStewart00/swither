@@ -19,6 +19,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('/index', 'YelpController');
 Route::resource('/likes', 'LikesController');
+Route::resource('/groups', 'GroupController');
+Route::resource('/usergroups', 'UsersGroupsController');
+Route::get('/findgroups/{id}', 'GroupController@showGroups');
 
 Route::get('/user/{user}', function (App\user $user) {
     return $user->email;
