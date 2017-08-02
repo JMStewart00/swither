@@ -14,7 +14,8 @@ class LikesController extends Controller
      */
     public function index()
     {
-        //
+        $likes = Likes::all();
+        return $likes;
     }
 
     /**
@@ -35,7 +36,11 @@ class LikesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $like = new Likes;
+        $like->user_id = $request->input('user_id');
+        $like->group_id = $request->input('group_id');
+        $like->business_info = $request->input('business_info');
+        $like->save();
     }
 
     /**
