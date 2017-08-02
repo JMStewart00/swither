@@ -51,7 +51,11 @@ class GroupController extends Controller
     public function showGroups($id)
     {
         $groups = UsersGroups::where('user_id', '=', $id)->get();
-        $group_names = Group::where('id', '=', $groups[0]->group_id)->get();
+        // return $groups;
+        $group_names = array();
+        foreach($groups as $group) {
+            array_push($group_names, Group::where('id', '=', $group->group_id)->get()[0]);
+            }
         return $group_names;
     }
 
