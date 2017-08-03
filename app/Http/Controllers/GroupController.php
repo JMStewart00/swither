@@ -40,6 +40,7 @@ class GroupController extends Controller
         $group->group_name = $request->input('group_name');
         $group->pin = $request->input('pin');
         $group->save();
+
     }
 
     /**

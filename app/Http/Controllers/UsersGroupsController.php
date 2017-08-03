@@ -94,20 +94,20 @@ class UsersGroupsController extends Controller
     public function joinGroup(Request $request) {
         $params = $request->all();
         $group = Group::where('group_name', '=', $params['group_name'])->where('pin', '=', $params['pin'])->get();
-        if (sizeof($group) === 0) {
-            return response()->json(['message' => 'Check yo self. Looks like something is wrong']);
-        } else {
+        // if (sizeof($group) === 0) {
+        //     return response()->json(['message' => 'Check yo self. Looks like something is wrong']);
+        // } else {
 
-            $checkCombo = UsersGroups::where('group_id', '=', $group[0]->id)->where('user_id', '=', $params['user_id'])->first();
-            if (count($checkCombo) === 1) {
-                return response()->json(['message' => 'You can\'t join somthing you\'re already a part of...']);
-            } else {
+        //     $checkCombo = UsersGroups::where('group_id', '=', $group[0]->id)->where('user_id', '=', $params['user_id'])->first();
+        //     if (count($checkCombo) === 1) {
+        //         return response()->json(['message' => 'You can\'t join somthing you\'re already a part of...']);
+        //     } else {
             $joiner = new UsersGroups;
             $joiner->group_id = $group[0]->id;
             $joiner->user_id = $params['user_id'];
             $joiner->save();
-            return response()->json(['message' => 'Ready to ball! Now a part of that group!']);
-            }
-        }
+            // return response()->json(['message' => 'Ready to ball! Now a part of that group!']);
+        //     }
+        // }
     }
 }
