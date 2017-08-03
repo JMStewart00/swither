@@ -21,6 +21,7 @@ Route::resource('/index', 'YelpController');
 Route::resource('/likes', 'LikesController');
 Route::resource('/groups', 'GroupController');
 Route::resource('/usergroups', 'UsersGroupsController');
+Route::post('/joingroup', 'UsersGroupsController@joinGroup');
 Route::get('/findgroups/{id}', 'GroupController@showGroups');
 
 Route::get('/user/{user}', function (App\user $user) {
