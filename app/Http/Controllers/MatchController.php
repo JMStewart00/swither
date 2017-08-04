@@ -16,7 +16,7 @@ class MatchController extends Controller
      */
     public function index()
     {
-        //
+        return Match::where('group_id', '=', $request->group_id);
     }
 
     /**
@@ -37,7 +37,7 @@ class MatchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            return Match::where('group_id', '=', $request->group_id);
     }
 
     /**
@@ -46,9 +46,9 @@ class MatchController extends Controller
      * @param  \App\Match  $match
      * @return \Illuminate\Http\Response
      */
-    public function show(Match $match)
+    public function show(Request $request)
     {
-       
+       return Match::where('group_id', '=', $request->group_id);
     }
 
     /**
@@ -116,12 +116,11 @@ class MatchController extends Controller
                 $fullMatch->business_id = $match;
                 $fullMatch->save();
             }
-        }
+        } // end foreach $matchs as $match
 
+        return Match::where('group_id', '=', $request->group_id)->get();
 
-
-
-    }
+    } // end matches
 
 
         
