@@ -20,6 +20,7 @@ class CreateLikesTable extends Migration
             $table->integer('group_id');
             $table->foreign('group_id')->references('id')->on('groups');
             $table->json('business_info');
+            $table->string('business_id');
             $table->softDeletes();
             $table->timestamps();
         });
