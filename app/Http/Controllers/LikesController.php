@@ -12,7 +12,7 @@ class LikesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function getLikes(Request $request)
     {
         $user = $request->user_id;
         $group = $request->group_id;
