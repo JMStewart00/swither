@@ -12,9 +12,11 @@ class LikesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $likes = Likes::all();
+        $user = $request->user_id;
+        $group = $request->group_id;
+        $likes = Likes::where("user_id", "=", $user)->where("group_id", "=", $group)->get();
         return $likes;
     }
 
