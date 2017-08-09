@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('/index', 'YelpController');
-// Route::resource('/likes', 'LikesController');
+Route::resource('/likes', 'LikesController');
 Route::post('/likesbygroup', 'LikesController@getLikes');
 Route::resource('/matches', 'MatchController');
 Route::post('/matches', 'MatchController@getMatches');
