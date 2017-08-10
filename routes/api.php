@@ -26,6 +26,7 @@ Route::resource('/groups', 'GroupController');
 Route::resource('/usergroups', 'UsersGroupsController');
 Route::post('/joingroup', 'UsersGroupsController@joinGroup');
 Route::get('/findgroups/{id}', 'GroupController@showGroups');
+Route::get('/user/{id}', 'UsersController@show');
 
 
 Route::get('/user/{user}', function (App\user $user) {
